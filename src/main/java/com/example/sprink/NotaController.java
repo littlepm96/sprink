@@ -1,5 +1,7 @@
 package com.example.sprink;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import netscape.javascript.JSObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +30,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
         notaRepository.save(n);
         return "Saved";
     }
+
 
     @GetMapping(path = "/all")
     public @ResponseBody
