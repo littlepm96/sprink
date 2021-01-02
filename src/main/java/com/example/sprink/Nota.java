@@ -17,6 +17,7 @@ public class Nota {
 
     private String content;
 
+
     public String idUser;
 
     public String getTitle() {
