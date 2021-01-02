@@ -1,4 +1,4 @@
-package com.example.sprink;
+package com.example.sprink.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

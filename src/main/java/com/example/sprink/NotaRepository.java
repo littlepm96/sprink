@@ -1,8 +1,7 @@
 package com.example.sprink;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
-import com.example.sprink.Nota;
+import com.example.sprink.domain.Nota;
 public interface NotaRepository extends JpaRepository<Nota, Long> {
 
         }
