@@ -22,25 +22,24 @@ public class AccessingDataMysqlApplication {
     public static void main(String[] args) {
         SpringApplication.run(AccessingDataMysqlApplication.class, args);
     }
-    //@Bean
-    //public CommandLineRunner loadData(UtenteRepository utenteRepository) {
-      //  return (args) -> {
+    @Bean
+    public CommandLineRunner loadData(UtenteRepository utenteRepository) {
+        return (args) -> {
 
 
+/*
 
+    Utente piri = new Utente();
+            piri.setUsername("piri");
+            piri.setPassword(passwordEncoder.encode("piri"));
+           piri.setChiaverecupero("piri");
+           piri.setNome("piri");
+           piri.setCognome("piri");
 
-   // Utente piri = new Utente();
-     //       piri.setUsername("piri");
-       //     piri.setPassword(passwordEncoder.encode("piri"));
-         //   piri.setChiaverecupero("piri");
-           // piri.setNome("piri");
-            //piri.setCognome("piri");
+           piri.setDatanascita(java.sql.Date.valueOf("1968-01-01"));
+           utenteRepository.save(piri);
 
-           // piri.setDatanascita(java.sql.Date.valueOf("1968-01-01"));
-           // utenteRepository.save(piri);
+*/
 
-
-
-
-        //};
-}
+};
+}}
