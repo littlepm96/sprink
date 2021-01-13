@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller // This means that this class is a Controller
@@ -18,7 +19,7 @@ import java.util.Optional;
     @PostMapping(path = "/add") // Map ONLY POST Requests
     public @ResponseBody
     String addNewNota(@RequestParam String title
-            , @RequestParam String content, @RequestParam String user) {
+            , @RequestParam String content, @RequestParam String user, @RequestParam String color) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
 
@@ -26,6 +27,7 @@ import java.util.Optional;
        n.setContent(content);
        n.setIdUser(user);
        n.setTitle(title);
+       n.setColor(color);
         notaRepository.save(n);
         return "Saved";
     }
@@ -33,11 +35,19 @@ import java.util.Optional;
 
     @GetMapping(path = "/all")
     public @ResponseBody
-    Iterable<Nota> getAllNote() {
+    List<Nota> getAllNote() {
         // This returns a JSON or XML with the users
         return notaRepository.findAll();
 
     }
+    @GetMapping("all/{id}")
+
+    public @ResponseBody
+    Optional<Nota> getNotaById(@PathVariable("id") String id){
+        return notaRepository.findById(Integer.parseInt(id));}
+
+
+
     @DeleteMapping // Map ONLY POST Requests
     public @ResponseBody
     String delNewNota(@RequestParam String id) {

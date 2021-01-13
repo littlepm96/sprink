@@ -11,13 +11,23 @@ import javax.persistence.Id;
 public class Nota {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
-    private Integer id;
+    private int id;
 
     private String title;
 
     private String content;
 
     public String idUser;
+
+    public String color;
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
 
     public String getTitle() {
         return title;
