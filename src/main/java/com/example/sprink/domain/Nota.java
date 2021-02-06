@@ -21,6 +21,16 @@ public class Nota {
 
     public String color;
 
+    public Nota(String title, String content, String idUser, String color) {
+        this.title = title;
+        this.content = content;
+        this.idUser = idUser;
+        this.color = color;
+    }
+
+    public Nota() {
+    }
+
     public String getColor() {
         return color;
     }

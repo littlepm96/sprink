@@ -1,5 +1,6 @@
 package com.example.sprink.api;
 
+import com.example.sprink.UtenteServiceImpl;
 import com.example.sprink.common.security.JWTTokenUtil;
 import com.example.sprink.common.security.UserDetailsImpl;
 import com.example.sprink.domain.Utente;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8080"})
 @RequestMapping("/api")
 public class RESTUtenteController {
 
@@ -32,7 +34,7 @@ public class RESTUtenteController {
     private JWTTokenUtil jwtTokenUtil;
 
     @Autowired
-    private UtenteService utenteService;
+    private UtenteServiceImpl utenteService;
 
     @PostMapping("/login")
     public UtenteResponse login(@RequestBody AuthenticationRequest authenticationRequest, HttpServletResponse response) throws AuthenticationException {

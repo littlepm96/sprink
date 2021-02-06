@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller // This means that this class is a Controller
+@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8000","http://localhost:4200"})
 @RequestMapping(path = "/note") // This means URL's start with /demo (after Application path)
  public class NotaController {
     @Autowired // This means to get the bean called userRepository
@@ -32,7 +33,7 @@ import java.util.Optional;
         return "Saved";
     }
 
-
+    @CrossOrigin(origins = {"http://localhost:8100","http://localhost:8000","http://localhost:4200"})
     @GetMapping(path = "/all")
     public @ResponseBody
     List<Nota> getAllNote() {
@@ -40,6 +41,7 @@ import java.util.Optional;
         return notaRepository.findAll();
 
     }
+    @CrossOrigin(origins = {"http://localhost:8100","http://localhost:8000","http://localhost:4200"})
     @GetMapping("all/{id}")
 
     public @ResponseBody
@@ -47,7 +49,7 @@ import java.util.Optional;
         return notaRepository.findById(Integer.parseInt(id));}
 
 
-
+    @CrossOrigin(origins = {"http://localhost:8100","http://localhost:8000","http://localhost:4200"})
     @DeleteMapping // Map ONLY POST Requests
     public @ResponseBody
     String delNewNota(@RequestParam String id) {

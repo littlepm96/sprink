@@ -24,7 +24,6 @@ public class UtenteResponse {
         this.nome = utente.getNome();
         this.cognome = utente.getCognome();
 
-        this.datanascita = utente.getDatanascita();
     }
 
     public String getUsername() {
