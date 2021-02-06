@@ -28,6 +28,7 @@ public class Nota {
         this.color = color;
     }
 
+
     public Nota() {
     }
 

@@ -60,4 +60,10 @@ public class RESTUtenteController {
     public void insert(@RequestBody Utente utente) {
         utenteService.createUtente(utente);
     }
+    @PostMapping("/registration")
+    public void registration(@RequestBody Utente utente) {
+
+
+        utenteService.createUtente(utente);
+    }
 }

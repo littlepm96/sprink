@@ -12,7 +12,7 @@ public class UtenteResponse {
     private String nome;
     private String cognome;
 
-    private Date datanascita;
+
 
     public UtenteResponse() {
     }
@@ -67,11 +67,4 @@ public class UtenteResponse {
     }
 
 
-    public Date getDatanascita() {
-        return datanascita;
-    }
-
-    public void setDatanascita(Date datanascita) {
-        this.datanascita = datanascita;
-    }
 }
