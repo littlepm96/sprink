@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller // This means that this class is a Controller
+@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8000","http://localhost:4200"})
 @RequestMapping(path = "/note") // This means URL's start with /demo (after Application path)
  public class NotaController {
     @Autowired // This means to get the bean called userRepository
@@ -32,7 +33,7 @@ import java.util.Optional;
         return "Saved";
     }
 
-
+    @CrossOrigin(origins = {"http://localhost:8100","http://localhost:8000","http://localhost:4200"})
     @GetMapping(path = "/all")
     public @ResponseBody
     List<Nota> getAllNote() {
@@ -40,6 +41,7 @@ import java.util.Optional;
         return notaRepository.findAll();
 
     }
+    @CrossOrigin(origins = {"http://localhost:8100","http://localhost:8000","http://localhost:4200"})
     @GetMapping("all/{id}")
 
     public @ResponseBody
@@ -47,7 +49,7 @@ import java.util.Optional;
         return notaRepository.findById(Integer.parseInt(id));}
 
 
-
+    @CrossOrigin(origins = {"http://localhost:8100","http://localhost:8000","http://localhost:4200"})
     @DeleteMapping // Map ONLY POST Requests
     public @ResponseBody
     String delNewNota(@RequestParam String id) {
@@ -59,7 +61,43 @@ import java.util.Optional;
         return "cancellato";
     }
 
+    @PutMapping("all/{id}")
+    public @ResponseBody
+    String updateNota(@RequestBody Nota nota, @PathVariable String id) {
+        // @ResponseBody means the returned String is the response, not a view name
+        // @RequestParam means it is a parameter from the GET or POST request
+
+        // Optional<Nota> nota= notaRepository.findById(Long.valueOf(id));
+        Optional<Nota> n= notaRepository.findById(Integer.parseInt(id));
+        Nota m =n.get();
+        System.out.println(m.getTitle());
+        if (m.getTitle().equals(nota.getTitle()) && m.getIdUser().equals(nota.getIdUser())){
+        m.setContent(nota.getContent());
+        m.setColor(nota.getColor());
+        notaRepository.save(m);
+        //se titolo e user sono uguali aggiorna il contenuto della nota e il colore
+
+
+    return "aggiornato";}
+        else{return "404";}
+    }
 
 
 
+    @CrossOrigin(origins = {"http://localhost:8100","http://localhost:8000","http://localhost:4200"})
+    @GetMapping(path = "/user/{user}")
+    public @ResponseBody
+    List<Nota> getAllNote(@PathVariable String user) {
+        // This returns a JSON or XML with the users
+        return notaRepository.findByuser(user);
+
+    }
+
+    @CrossOrigin(origins = {"http://localhost:8100","http://localhost:8000","http://localhost:4200"})
+    @GetMapping(path = "/user/{user}/{id}")
+    public @ResponseBody
+    Nota getUserNota(@PathVariable String user, @PathVariable String id) {
+        // This returns a JSON or XML with the users
+        return notaRepository.findUserNota(user,Integer.parseInt(id));
+    }
 }

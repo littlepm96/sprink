@@ -75,21 +75,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable().exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-                // non abbiamo bisogno di una sessione
+// non abbiamo bisogno di una sessione
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().cors()
                 .and().authorizeRequests()
-                //Specificare le url che sono soggette ad autenticazione ed autorizzazione
-                .antMatchers("/", "/*.html", "/favicon.ico", "/**/*.html", "/**/*.css", "/**/*.js", "/api/login/**").permitAll()
-                .antMatchers("/api/preferiti/**").authenticated()
-                .antMatchers(HttpMethod.POST, "/api/ricette").authenticated()
-                .antMatchers(HttpMethod.PUT, "/api/ricette/**").authenticated()
-                .antMatchers(HttpMethod.PATCH, "/api/ricette/**").authenticated()
-                .antMatchers("/api/valutazioni/**").authenticated();
-
-
-        // Filtro Custom JWT
-        httpSecurity.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
-
-        httpSecurity.headers().cacheControl();
-    }
+//Specificare le url che sono soggette ad autenticazione ed autorizzazione
+                .antMatchers("/", "/*.html", "/favicon.ico", "/**/*.html", "/**/*.css", "/**/*.js",
+                        "/api/login/**").permitAll()
+                .antMatchers("/api/notizie/**").authenticated()
+                .antMatchers("/api/insegnamenti/**", "/api/appelli/**").hasAnyRole("docente")
+                .antMatchers("/api/utente/**").authenticated();
+// Filtro Custom JWT
+        httpSecurity.addFilterBefore(authenticationTokenFilterBean(),
+                UsernamePasswordAuthenticationFilter.class);
+        httpSecurity.headers().cacheControl();}
 }

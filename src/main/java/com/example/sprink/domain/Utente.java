@@ -27,9 +27,18 @@ public class Utente {
     private String cognome;
 
 
+    public Utente(String username, String password, String chiaverecupero, String nome, String cognome) {
+        this.username = username;
+        this.password = password;
+        this.chiaverecupero = chiaverecupero;
+        this.nome = nome;
+        this.cognome = cognome;
+    }
 
-    @Column(name = "DATANASCITA", nullable = false)
-    private Date datanascita;
+
+    public Utente() {
+
+    }
 
     public Long getIDutente() {
         return IDutente;
@@ -81,11 +90,5 @@ public class Utente {
 
 
 
-    public Date getDatanascita() {
-        return datanascita;
-    }
 
-    public void setDatanascita(Date datanascita) {
-        this.datanascita = datanascita;
-    }
 }
