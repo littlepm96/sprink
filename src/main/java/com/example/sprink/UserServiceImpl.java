@@ -53,6 +53,11 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
     }
 
     @Override
+    public List<User> findAll() {
+        return userRepo.findAll();
+    }
+
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<User> opt = userRepo.findByUsername(username);
 

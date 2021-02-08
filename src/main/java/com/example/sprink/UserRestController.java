@@ -1,6 +1,7 @@
 package com.example.sprink;
 
 import java.security.Principal;
+import java.util.List;
 
 import com.example.sprink.IUserService;
 import com.example.sprink.JWTUtil;
@@ -12,12 +13,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 
 @Controller
+@CrossOrigin(origins = {"http://localhost:8100","http://10.0.2.2:8080/"})
 @RequestMapping("/user")
 public class UserRestController {
 
@@ -28,6 +28,10 @@ public class UserRestController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+
+    @GetMapping ("/all")
+public  @ResponseBody
+    List<User> getall(){return userService.findAll();}
     @PostMapping("/saveUser")
     public ResponseEntity<String> saveUser(@RequestBody User user) {
 
