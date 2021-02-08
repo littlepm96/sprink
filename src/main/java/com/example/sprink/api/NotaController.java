@@ -33,6 +33,21 @@ import java.util.Optional;
         return "Saved";
     }
 
+
+    @PostMapping(path = "/addnota") // Map ONLY POST Requests
+    public @ResponseBody
+    String addNewNota(@RequestBody Nota r) {
+        // @ResponseBody means the returned String is the response, not a view name
+        // @RequestParam means it is a parameter from the GET or POST request
+
+
+        notaRepository.save(r);
+        return "Saved";
+    }
+
+
+
+
     @CrossOrigin(origins = {"http://localhost:8100","http://localhost:8000","http://localhost:4200"})
     @GetMapping(path = "/all")
     public @ResponseBody

@@ -1,4 +1,4 @@
-package com.example.sprink;
+package com.example.sprink.common.security;
 
 @SuppressWarnings("serial")
 public class BusinessException extends RuntimeException {
