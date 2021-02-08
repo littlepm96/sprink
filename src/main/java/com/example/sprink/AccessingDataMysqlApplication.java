@@ -1,6 +1,5 @@
 package com.example.sprink;
 
-import com.example.sprink.domain.Utente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
@@ -9,8 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import java.util.HashSet;
-import java.util.Set;
 
 @SpringBootApplication
 public class AccessingDataMysqlApplication {
@@ -26,7 +23,7 @@ public class AccessingDataMysqlApplication {
         SpringApplication.run(AccessingDataMysqlApplication.class, args);
     }
     @Bean
-    public CommandLineRunner loadData(UtenteRepository utenteRepository) {
+    public CommandLineRunner loadData(UserRepository utenteRepository) {
         return (args) -> {
 
 

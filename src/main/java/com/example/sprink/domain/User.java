@@ -31,6 +31,9 @@ public class User {
     @Column(name="user_email")
     private String email;
 
+    @Column(name="user_key")
+    private String key;
+
     @ElementCollection(fetch= FetchType.EAGER)
     @CollectionTable(
             name="roles",
@@ -42,11 +45,20 @@ public class User {
     public User() {
     }
 
-    public User(String username, String password, String email, Set<String> roles) {
+    public User(String username, String password, String email, Set<String> roles,String key) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.roles = roles;
+        this.key=key;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public Integer getId() {

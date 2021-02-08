@@ -1,4 +1,4 @@
-package com.example.sprink;
+package com.example.sprink.common.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -53,7 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         var httpSecurity = http
                 .csrf().disable()    //Disabling CSRF as not using form based login
                 .authorizeRequests()
-                .antMatchers("/", "/*.html", "/favicon.ico", "/**/*.html", "/**/*.css", "/**/*.js", "/note/**","/api/utenti/**").permitAll()
+                .antMatchers("/", "/*.html", "/favicon.ico", "/**/*.html", "/**/*.css", "/**/*.js", "/note/**","/user/all").permitAll()
                 .antMatchers("/user/saveUser", "/user/loginUser").permitAll()
                 .anyRequest().authenticated()
                 .and()

@@ -1,23 +1,23 @@
-package com.example.sprink;
+package com.example.sprink.api;
 
 import java.security.Principal;
+import java.util.List;
 
-import com.example.sprink.IUserService;
-import com.example.sprink.JWTUtil;
-import com.example.sprink.UserRequest;
-import com.example.sprink.UserResponse;
+import com.example.sprink.services.IUserService;
+import com.example.sprink.common.security.JWTUtil;
+import com.example.sprink.domain.UserRequest;
+import com.example.sprink.domain.UserResponse;
 import com.example.sprink.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 
 @Controller
+@CrossOrigin(origins = {"http://localhost:8100", "http://10.0.2.2:8080/"})
 @RequestMapping("/user")
 public class UserRestController {
 
@@ -27,6 +27,12 @@ public class UserRestController {
     private JWTUtil util;
     @Autowired
     private AuthenticationManager authenticationManager;
+
+
+    @GetMapping("/all")
+    public @ResponseBody List<User> getAll() {
+        return userService.findUsers();
+    }
 
     @PostMapping("/saveUser")
     public ResponseEntity<String> saveUser(@RequestBody User user) {

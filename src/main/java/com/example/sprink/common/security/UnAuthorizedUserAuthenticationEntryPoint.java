@@ -1,4 +1,4 @@
-package com.example.sprink;
+package com.example.sprink.common.security;
 
 import java.io.IOException;
 
