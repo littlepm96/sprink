@@ -2,21 +2,13 @@ package com.example.sprink.api;
 
 import com.example.sprink.UtenteServiceImpl;
 import com.example.sprink.common.security.JWTTokenUtil;
-import com.example.sprink.common.security.UserDetailsImpl;
 import com.example.sprink.domain.Utente;
-import com.example.sprink.services.UtenteService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
@@ -36,20 +28,7 @@ public class RESTUtenteController {
     @Autowired
     private UtenteServiceImpl utenteService;
 
-    @PostMapping("/login")
-    public UtenteResponse login(@RequestBody AuthenticationRequest authenticationRequest, HttpServletResponse response) throws AuthenticationException {
-        // Effettuo l'autenticazione
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword()));
-        SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        // Genero Token e lo inserisco nell'header di risposta
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        String token = jwtTokenUtil.generateToken(userDetails);
-        response.setHeader(tokenHeader, token);
-
-        // Ritorno l'utente
-        return new UtenteResponse(((UserDetailsImpl) userDetails).getUtente());
-    }
 
     @GetMapping("/utenti")
     public List<Utente> getAll() {

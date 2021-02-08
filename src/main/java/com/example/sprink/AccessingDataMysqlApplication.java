@@ -2,6 +2,7 @@ package com.example.sprink;
 
 import com.example.sprink.domain.Utente;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,6 +18,8 @@ public class AccessingDataMysqlApplication {
     PasswordEncoder getEncoder() {
         return new BCryptPasswordEncoder();
     }
+
+    @Qualifier("getEncoder")
     @Autowired
     private PasswordEncoder passwordEncoder;
     public static void main(String[] args) {

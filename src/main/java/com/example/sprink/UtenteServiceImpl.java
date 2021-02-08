@@ -5,6 +5,7 @@ import com.example.sprink.services.UtenteService;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.JpaSort;
@@ -19,7 +20,7 @@ import java.util.List;
 @Transactional
 public class UtenteServiceImpl implements UtenteService {
 
-
+@Qualifier("getEncoder")
     @Autowired
     private PasswordEncoder passwordEncoder;
 

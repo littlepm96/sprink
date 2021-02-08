@@ -1,18 +1,13 @@
-package com.example.sprink.api;
+package com.example.sprink;
 
-import com.example.sprink.domain.Utente;
+public class UserResponse {
+    public UserResponse() {
+    }
 
-
-import java.util.Date;
-
-public class UtenteResponse {
-
-
-        private String token;
+    private String token;
         private String message;
 
-
-    public UtenteResponse(String token, String message) {
+    public UserResponse(String token, String message) {
         this.token = token;
         this.message = message;
     }
