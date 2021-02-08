@@ -1,11 +1,7 @@
-package com.example.sprink.services;
+package com.example.sprink;
 
-import com.example.sprink.UserRepository;
-import com.example.sprink.common.security.BusinessException;
 import com.example.sprink.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.domain.JpaSort;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,6 +14,19 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
 
 @Service
@@ -39,15 +48,9 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
 
     //find user by username
     @Override
-    public Optional<User> findByUsername(String username) throws BusinessException {
+    public Optional<User> findByUsername(String username) {
         return userRepo.findByUsername(username);
     }
-    public List<User> findUsers()  throws BusinessException{
-        return userRepo.findAll(JpaSort.unsafe(Sort.Direction.DESC, "username"));
-    }
-
-
-
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
