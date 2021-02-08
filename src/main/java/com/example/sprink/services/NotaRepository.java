@@ -1,4 +1,4 @@
-package com.example.sprink;
+package com.example.sprink.services;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.example.sprink.domain.Nota;
