@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8080"})
+@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8080", "http://10.0.2.2:8080/"})
 @RequestMapping("/api")
 public class RESTUtenteController {
 
