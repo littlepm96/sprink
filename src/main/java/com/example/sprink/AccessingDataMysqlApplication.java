@@ -37,7 +37,7 @@ public class AccessingDataMysqlApplication {
            piri.setNome("piri");
            piri.setCognome("piri");
 
-           piri.setDatanascita(java.sql.Date.valueOf("1968-01-01"));
+
            utenteRepository.save(piri);
 
 */
