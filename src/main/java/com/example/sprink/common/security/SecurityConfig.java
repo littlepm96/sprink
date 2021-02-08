@@ -1,4 +1,4 @@
-package com.example.sprink;
+package com.example.sprink.common.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

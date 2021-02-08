@@ -1,13 +1,13 @@
-package com.example.sprink;
+package com.example.sprink.api;
 
 import java.security.Principal;
 import java.util.List;
 
-import com.example.sprink.IUserService;
-import com.example.sprink.JWTUtil;
-import com.example.sprink.UserRequest;
-import com.example.sprink.UserResponse;
+import com.example.sprink.common.security.JWTUtil;
+import com.example.sprink.domain.UserRequest;
+import com.example.sprink.domain.UserResponse;
 import com.example.sprink.domain.User;
+import com.example.sprink.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;

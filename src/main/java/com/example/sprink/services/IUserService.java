@@ -1,4 +1,4 @@
-package com.example.sprink;
+package com.example.sprink.services;
 
 import com.example.sprink.domain.User;
 

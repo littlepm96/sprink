@@ -1,6 +1,6 @@
 package com.example.sprink.api;
 
-import com.example.sprink.NotaRepository;
+import com.example.sprink.services.NotaRepository;
 import com.example.sprink.domain.Nota;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
