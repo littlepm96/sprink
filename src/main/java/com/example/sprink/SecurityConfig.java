@@ -53,7 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         var httpSecurity = http
                 .csrf().disable()    //Disabling CSRF as not using form based login
                 .authorizeRequests()
-                .antMatchers("/", "/*.html", "/favicon.ico", "/**/*.html", "/**/*.css", "/**/*.js", "/note/**","/api/utenti/**").permitAll()
+                .antMatchers("/", "/*.html", "/favicon.ico", "/**/*.html", "/**/*.css", "/**/*.js", "/note/**","/user/**").permitAll()
                 .antMatchers("/user/saveUser", "/user/loginUser").permitAll()
                 .anyRequest().authenticated()
                 .and()
