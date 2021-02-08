@@ -1,4 +1,4 @@
-package com.example.sprink.domain;
+package com.example.sprink;
 
 public class UserResponse {
     public UserResponse() {

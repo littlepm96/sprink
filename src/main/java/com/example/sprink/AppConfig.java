@@ -1,4 +1,4 @@
-package com.example.sprink.common.security;
+package com.example.sprink;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
