@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @Controller
-@CrossOrigin(origins = {"http://localhost:8100","http://10.0.2.2:8080/"})
+@CrossOrigin(origins = {"http://localhost:8100","http://10.0.2.2:8080/", "http://localhost:8100","http://localhost:8000","http://localhost:4200"})
 @RequestMapping("/user")
 public class UserRestController {
 
@@ -28,7 +28,7 @@ public class UserRestController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-
+    @CrossOrigin(origins = {"http://localhost:8100","http://localhost:8000","http://localhost:4200"})
     @GetMapping ("/all")
 public  @ResponseBody
     List<User> getall(){return userService.findAll();}
@@ -40,7 +40,7 @@ public  @ResponseBody
         //return new ResponseEntity<String>(message, HttpStatus.OK);
         return ResponseEntity.ok(message);
     }
-
+    @CrossOrigin(origins = {"http://localhost:8100","http://localhost:8000","http://localhost:4200"})
     @PostMapping("/loginUser")
     public ResponseEntity<UserResponse> login(@RequestBody UserRequest request){
 
@@ -50,7 +50,7 @@ public  @ResponseBody
         String token =util.generateToken(request.getUsername());
         return ResponseEntity.ok(new UserResponse(token,"Token generated successfully!"));
     }
-
+    @CrossOrigin(origins = {"http://localhost:8100","http://localhost:8000","http://localhost:4200"})
     @PostMapping("/getData")
     public ResponseEntity<String> testAfterLogin(Principal p){
         return ResponseEntity.ok("You are accessing data after a valid Login. You are :" +p.getName());
