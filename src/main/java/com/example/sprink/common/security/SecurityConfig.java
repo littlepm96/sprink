@@ -13,7 +13,11 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import java.util.Arrays;
 
 
 @EnableWebSecurity
@@ -46,13 +50,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userDetailsService)
                 .passwordEncoder(bCryptEncoder);
     }
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.addAllowedOrigin("*");
+        configuration.setAllowedMethods(Arrays.asList("POST, PUT, GET, OPTIONS, DELETE"));
+        configuration.addAllowedHeader("*");
+        configuration.addAllowedMethod("*");
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        var httpSecurity = http
-                //.csrf().disable()    //Disabling CSRF as not using form based login
-                .authorizeRequests()
+        http.csrf().disable().exceptionHandling().authenticationEntryPoint(authenticationEntryPoint).and()
+                // non abbiamo bisogno di una sessione
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().cors()
+                .and().authorizeRequests()
+
                 .antMatchers("/", "/*.html", "/favicon.ico", "/**/*.html", "/**/*.css", "/**/*.js", "/note/**","/user/**").permitAll()
                 .antMatchers("/user/saveUser", "/user/loginUser").permitAll()
                 .anyRequest().authenticated()
@@ -65,6 +82,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //To Verify user from second request onwards............
                 .and()
                 .addFilterBefore(secFilter, UsernamePasswordAuthenticationFilter.class);
+
+
+
+
     }
 }
 
